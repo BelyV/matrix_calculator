@@ -3,6 +3,7 @@ using namespace std;
 
 const int m = 10; // max pomiar
 
+
 void dodajmacierz(int mat[][m], int wiersz, int kolumna) {
     cout << "Podaj elemienty macierzy " << wiersz << "x" << kolumna << ":\n";
     for (int i = 0; i < wiersz; i++) {
@@ -56,17 +57,34 @@ void transponowanie(int a[][m], int c[][m], int wiersz, int kolumna) {
         }
     }
 }
+
+string podaj_numer(){
+    string f1;
+    powtorz:
+    cout<<"Dla +,-,* nacisnij - 1"<<endl;
+    cout<<"Dla transponowania nacisnij - 2"<<endl;
+
+    cin>>f1;
+
+    if ((f1 != "1") and (f1 != "2")) {
+        cout << "Podales niepoprawne dane, wprowadz liczbe w przedziale [1,2]" << endl;
+        goto powtorz;
+    }
+    return f1;
+}
+
+
 int main() {
     int a[m][m], b[m][m], c[m][m];
     int wierszA, kolumnaA = 0, wierszB, kolumnaB;
     char w;
     string f;
 
-    cout<<"Dla +,-,* nacisnij - 1"<<endl;
-    cout<<"Dla transponowania nacisnij - 2"<<endl;
+    //cout<<"Dla +,-,* nacisnij - 1"<<endl;
+    //cout<<"Dla transponowania nacisnij - 2"<<endl;
 
-    cin>>f;
-    cout<<endl;
+    //cin>>f;
+    f = podaj_numer();
 
     if(f=="1") {
         cout << "Podaj ilosc wierszej i kolumn dla macierzy A: ";
@@ -106,12 +124,14 @@ int main() {
                     wypiszmacirz(c, wierszA, kolumnaB);
 
                 }
-                else  cout <<"Brak danych"<<endl;
+                else {
+                    cout <<"Brak danych"<<endl;
+                }
             }
             else cout <<"Brak danych"<<endl;
     }
     else {
-        if(f =="2") {
+        if(f == "2") {
             cout << "Podaj ilosc wierszej i kolumn dla macierzy A: ";
             cin >> wierszA >> kolumnaA;
             if  (wierszA != kolumnaA) {
@@ -125,9 +145,5 @@ int main() {
             }
         }
     }
-    else {
-
-    }
-
 return 0;
 }
