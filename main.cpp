@@ -88,20 +88,29 @@ int main() {
     f = podaj_numer();
 
     if(f=="1") {
-        cout << "Podaj ilosc wierszej i kolumn dla macierzy A: ";
-        cin >> wierszA >> kolumnaA;
-        dodajmacierz(a, wierszA, kolumnaA);
-        wypiszmacirz(a, wierszA, kolumnaA);
+       //cout << "Podaj ilosc wierszej i kolumn dla macierzy A: ";
+       //cin >> wierszA >> kolumnaA;
+       //dodajmacierz(a, wierszA, kolumnaA);
+       //wypiszmacirz(a, wierszA, kolumnaA);
 
-        cout << "Podaj ilosc wierszej i kolumn dla macierzy B: ";
-        cin >> wierszB >> kolumnaB;
-        dodajmacierz(b, wierszB, kolumnaB);
-        wypiszmacirz(b, wierszB, kolumnaB);
-
+       //cout << "Podaj ilosc wierszej i kolumn dla macierzy B: ";
+       //cin >> wierszB >> kolumnaB;
+       //wypiszmacirz(b, wierszB, kolumnaB);
+        fun1:
         cout<<"Podaj + - dodawanie,- - odejmowanie,* - mnorzenie "<<endl;
         cin >>w;
 
         if(w=='+' || w=='-') {
+            cout << "Podaj ilosc wierszej i kolumn dla macierzy A: ";
+            cin >> wierszA >> kolumnaA;
+            dodajmacierz(a, wierszA, kolumnaA);
+            wypiszmacirz(a, wierszA, kolumnaA);
+
+            cout << "Podaj ilosc wierszej i kolumn dla macierzy B: ";
+            cin >> wierszB >> kolumnaB;
+            dodajmacierz(b, wierszB, kolumnaB);
+            wypiszmacirz(b, wierszB, kolumnaB);
+
             if (wierszA != wierszB || kolumnaA != kolumnaB) {
                 cout << "Macirzy A i B musza byc tego samego rozmiaru dla dodawania i odejmowania.\n";
             }
@@ -120,6 +129,16 @@ int main() {
         }
         else
             if (w=='*') {
+                cout << "Podaj ilosc wierszej i kolumn dla macierzy A: ";
+                cin >> wierszA >> kolumnaA;
+                dodajmacierz(a, wierszA, kolumnaA);
+                wypiszmacirz(a, wierszA, kolumnaA);
+
+                cout << "Podaj ilosc wierszej i kolumn dla macierzy B: ";
+                cin >> wierszB >> kolumnaB;
+                dodajmacierz(b, wierszB, kolumnaB);
+                wypiszmacirz(b, wierszB, kolumnaB);
+
                 if(wierszB==kolumnaA) {
                     mnorzenie(a, b, c, wierszA, kolumnaA, kolumnaB);
                     wypiszmacirz(c, wierszA, kolumnaB);
@@ -128,13 +147,16 @@ int main() {
                 else  cout <<"Brak danych"<<endl;
             }
             else cout <<"Brak danych"<<endl;
+        goto fun1;
     }
     else {
         if(f == "2") {
+            tr:
             cout << "Podaj ilosc wierszej i kolumn dla macierzy A: ";
             cin >> wierszA >> kolumnaA;
-            if  (wierszA != kolumnaA) {
-                cout << "Macirz A musi byc symetryczny.\n";
+            if  (wierszA != kolumnaA || wierszA>5) {
+                cout << "Macirz A musi byc symetryczny i mniej niz 5x5.\n";
+                goto tr;
             }
             else {
                 dodajmacierz(a, wierszA, kolumnaA);
