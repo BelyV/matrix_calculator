@@ -68,8 +68,7 @@ int main() {
     cin>>f;
     cout<<endl;
 
-    if(f=="1")
-    {
+    if(f=="1") {
         cout << "Podaj ilosc wierszej i kolumn dla macierzy A: ";
         cin >> wierszA >> kolumnaA;
         dodajmacierz(a, wierszA, kolumnaA);
@@ -83,22 +82,17 @@ int main() {
         cout<<"Podaj + - dodawanie,- - odejmowanie,* - mnorzenie "<<endl;
         cin >>w;
 
-        if(w=='+' || w=='-')
-        {
-            if (wierszA != wierszB || kolumnaA != kolumnaB)
-            {
+        if(w=='+' || w=='-') {
+            if (wierszA != wierszB || kolumnaA != kolumnaB) {
                 cout << "Macirzy A i B musza byc tego samego rozmiaru dla dodawania i odejmowania.\n";
             }
-            else
-            {
-                if(w=='+')
-                {
+            else {
+                if(w=='+') {
                     dodawanie(a, b, c, wierszA, kolumnaA);
                     wypiszmacirz(c, wierszA, kolumnaA);
                 }
                 else
-                    if(w=='-')
-                    {
+                    if(w=='-') {
                         odejmowanie(a, b, c, wierszA, kolumnaA);
                         wypiszmacirz(c, wierszA, kolumnaA);
                     }
@@ -106,10 +100,8 @@ int main() {
              }
         }
         else
-            if (w=='*')
-            {
-                if(wierszB==kolumnaA)
-                {
+            if (w=='*') {
+                if(wierszB==kolumnaA) {
                     mnorzenie(a, b, c, wierszA, kolumnaA, kolumnaB);
                     wypiszmacirz(c, wierszA, kolumnaB);
 
@@ -118,24 +110,23 @@ int main() {
             }
             else cout <<"Brak danych"<<endl;
     }
-    else
-    {
-        if(f =="2")
-        {
+    else {
+        if(f =="2") {
             cout << "Podaj ilosc wierszej i kolumn dla macierzy A: ";
             cin >> wierszA >> kolumnaA;
-            if  (wierszA != kolumnaA)
-            {
+            if  (wierszA != kolumnaA) {
                 cout << "Macirz A musi byc symetryczny.\n";
             }
-            else
-            {
+            else {
                 dodajmacierz(a, wierszA, kolumnaA);
                 wypiszmacirz(a, wierszA, kolumnaA);
                 transponowanie(a,c,wierszA,kolumnaA);
                 wypiszmacirz(c, wierszA, kolumnaA);
             }
         }
+    }
+    else {
+
     }
 
 return 0;
