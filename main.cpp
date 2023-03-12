@@ -66,6 +66,7 @@ string podaj_numer(){
 
     cin>>f1;
 
+
     if ((f1 != "1") and (f1 != "2")) {
         cout << "Podales niepoprawne dane, wprowadz liczbe w przedziale [1,2]" << endl;
         goto powtorz;
@@ -124,9 +125,7 @@ int main() {
                     wypiszmacirz(c, wierszA, kolumnaB);
 
                 }
-                else {
-                    cout <<"Brak danych"<<endl;
-                }
+                else  cout <<"Brak danych"<<endl;
             }
             else cout <<"Brak danych"<<endl;
     }
