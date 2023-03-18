@@ -111,7 +111,8 @@ string podaj_numer(){
 
 int main() {
     int a[m][m], b[m][m], c[m][m];
-    int wierszA, kolumnaA = 0, wierszB, kolumnaB;
+    string wierA, kolA, wierB, kolB;
+    int wierszA, kolumnaA, wierszB, kolumnaB;
     char w;
     string f;
 
@@ -136,15 +137,50 @@ int main() {
         if (w=='e') {
             return 0;
         }
+
         if(w=='+' || w=='-') {
             cout << "Podaj ilosc wierszej i kolumn dla macierzy A: ";
-            cin >> wierszA >> kolumnaA;
+            oma:
+            cin >> wierA;
+            for (int i = 0; i < wierA.length(); i++){
+                if (((int(wierA[i]) > 57) || (int(wierA[i]) < 48))){
+                    cout << "Podane bledne dane!" << endl;
+                    goto oma;
+                }
+            }
+            wierszA=stoi(wierA);
+            oma1:
+            cin >> kolA;
+            for (int i = 0; i < kolA.length(); i++){
+                if (((int(kolA[i]) > 57) || (int(kolA[i]) < 48))){
+                    cout << "Podane bledne dane!" << endl;
+                    goto oma1;
+                }
+            }
+            kolumnaA=stoi(kolA);
             dodajmacierz(a, wierszA, kolumnaA);
             //wypiszmacirz(a, wierszA, kolumnaA);
             wypisz_macierz_z_listy(macierz_to_list(a, wierszA, kolumnaA),wierszA,kolumnaA);
 
             cout << "Podaj ilosc wierszej i kolumn dla macierzy B: ";
-            cin >> wierszB >> kolumnaB;
+            omb:
+            cin >> wierB;
+            for (int i = 0; i < wierB.length(); i++){
+                if (((int(wierB[i]) > 57) || (int(wierB[i]) < 48))){
+                    cout << "Podane bledne dane!" << endl;
+                    goto omb;
+                }
+            }
+            wierszB=stoi(wierB);
+            omb1:
+            cin >> kolB;
+            for (int i = 0; i < kolB.length(); i++){
+                if (((int(kolB[i]) > 57) || (int(kolB[i]) < 48))){
+                    cout << "Podane bledne dane!" << endl;
+                    goto omb1;
+                }
+            }
+            kolumnaB=stoi(kolB);
             dodajmacierz(b, wierszB, kolumnaB);
             //wypiszmacirz(b, wierszB, kolumnaB);
             wypisz_macierz_z_listy(macierz_to_list(b, wierszB, kolumnaB),wierszB,kolumnaB);
@@ -193,10 +229,28 @@ int main() {
         goto fun1;
     }
     else {
+         // tra:
         if(f == "2") {
             tr:
             cout << "Podaj ilosc wierszej i kolumn dla macierzy A: ";
-            cin >> wierszA >> kolumnaA;
+oma2:
+cin >> wierA;
+for (int i = 0; i < wierA.length(); i++){
+    if (((int(wierA[i]) > 57) || (int(wierA[i]) < 48))){
+        cout << "Podane bledne dane!" << endl;
+        goto oma2;
+    }
+}
+wierszA=stoi(wierA);
+oma3:
+cin >> kolA;
+for (int i = 0; i < kolA.length(); i++){
+    if (((int(kolA[i]) > 57) || (int(kolA[i]) < 48))){
+        cout << "Podane bledne dane!" << endl;
+        goto oma3;
+    }
+}
+kolumnaA=stoi(kolA);
             if  (wierszA != kolumnaA || wierszA>5) {
                 cout << "Macirz A musi byc symetryczny i mniej niz 5x5.\n";
                 goto tr;
@@ -210,6 +264,7 @@ int main() {
                 wypisz_macierz_z_listy(macierz_to_list(c, wierszA, kolumnaA),wierszA,kolumnaA);
             }
         }
+       // goto tra;
     }
 return 0;
 }
