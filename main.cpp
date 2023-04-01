@@ -97,17 +97,37 @@ string podaj_numer(){
     powtorz:
     cout<<"Dla +,-,* nacisnij - 1"<<endl;
     cout<<"Dla transponowania nacisnij - 2"<<endl;
+    cout<<"Dla obliczenia wyznacznika nacisnij - 3"<<endl;
+    cout<<"e - wyjsc z programu"<<endl;
 
     cin>>f1;
 
 
-    if ((f1 != "1") and (f1 != "2")) {
-        cout << "Podales niepoprawne dane, wprowadz liczbe w przedziale [1,2]" << endl;
+    if ((f1 != "1") and (f1 != "2") and (f1!="3") and (f1 !="e")) {
+        cout << "Podales niepoprawne dane!!!" << endl;
         goto powtorz;
     }
     return f1;
 }
 
+void wyznacznik(int mat[][m], int wiersz, int kolumna) {
+    int det;
+    int size=wiersz;
+
+    if(wiersz!=kolumna){
+        cout<<"Nia ma mozliwosci obliczyc wyznacznik"<<endl;
+    }
+   else{
+    if (size == 1) {
+        det=mat[0][0];
+    } else if (size == 2) {
+        det=mat[0][0] * mat[1][1] - mat[0][1] * mat[1][0];
+    } else if (size == 3) {
+        det=mat[0][0]*mat[1][1]*mat[2][2]+mat[0][1]*mat[1][2]*mat[2][0]+mat[0][2]*mat[1][0]*mat[2][1]-mat[0][2]*mat[1][1]*mat[2][0]-mat[0][0]*mat[1][2]*mat[2][1]-mat[0][1]*mat[1][0]*mat[2][2];
+    }
+    cout<<"Wyznacznik macierzy: "<<det<<endl;
+        }
+}
 
 int main() {
     int a[m][m], b[m][m], c[m][m];
@@ -116,31 +136,24 @@ int main() {
     char w;
     string f;
 
-    //cout<<"Dla +,-,* nacisnij - 1"<<endl;
-    //cout<<"Dla transponowania nacisnij - 2"<<endl;
-
-    //cin>>f;
+    r:
     f = podaj_numer();
-
+  if ((f == "1") || (f == "2") || (f =="3")) {
     if(f=="1") {
-       //cout << "Podaj ilosc wierszej i kolumn dla macierzy A: ";
-       //cin >> wierszA >> kolumnaA;
-       //dodajmacierz(a, wierszA, kolumnaA);
-       //wypiszmacirz(a, wierszA, kolumnaA);
-
-       //cout << "Podaj ilosc wierszej i kolumn dla macierzy B: ";
-       //cin >> wierszB >> kolumnaB;
-       //wypiszmacirz(b, wierszB, kolumnaB);
         fun1:
-        cout<<"Podaj + - dodawanie,- - odejmowanie,* - mnorzenie, e-wyjsc "<<endl;
+        cout<<"Podaj + - dodawanie,- - odejmowanie,* - mnorzenie, m-menu "<<endl;
         cin >>w;
-        if (w=='e') {
-            return 0;
+        if (w=='m') {
+            cout<<endl;
+            cout<<endl;
+            cout<<endl;
+            goto r;
         }
 
         if(w=='+' || w=='-') {
-            cout << "Podaj ilosc wierszej i kolumn dla macierzy A: ";
-            oma:
+               oma:
+            cout << "Podaj ilosc wierszej dla macierzy A: ";
+
             cin >> wierA;
             for (int i = 0; i < wierA.length(); i++){
                 if (((int(wierA[i]) > 57) || (int(wierA[i]) < 48))){
@@ -150,6 +163,7 @@ int main() {
             }
             wierszA=stoi(wierA);
             oma1:
+              cout << "Podaj ilosc kolumn dla macierzy A: ";
             cin >> kolA;
             for (int i = 0; i < kolA.length(); i++){
                 if (((int(kolA[i]) > 57) || (int(kolA[i]) < 48))){
@@ -162,8 +176,8 @@ int main() {
             //wypiszmacirz(a, wierszA, kolumnaA);
             wypisz_macierz_z_listy(macierz_to_list(a, wierszA, kolumnaA),wierszA,kolumnaA);
 
-            cout << "Podaj ilosc wierszej i kolumn dla macierzy B: ";
             omb:
+              cout << "Podaj ilosc wierszej dla macierzy B: ";
             cin >> wierB;
             for (int i = 0; i < wierB.length(); i++){
                 if (((int(wierB[i]) > 57) || (int(wierB[i]) < 48))){
@@ -173,6 +187,7 @@ int main() {
             }
             wierszB=stoi(wierB);
             omb1:
+              cout << "Podaj ilosc kolumn dla macierzy B: ";
             cin >> kolB;
             for (int i = 0; i < kolB.length(); i++){
                 if (((int(kolB[i]) > 57) || (int(kolB[i]) < 48))){
@@ -228,12 +243,13 @@ int main() {
             else cout <<"Brak danych"<<endl;
         goto fun1;
     }
-    else {
-         // tra:
-        if(f == "2") {
+
+
+        if(f == "2"){ {
             tr:
-            cout << "Podaj ilosc wierszej i kolumn dla macierzy A: ";
+
 oma2:
+                  cout << "Podaj ilosc wierszej dla macierzy A: ";
 cin >> wierA;
 for (int i = 0; i < wierA.length(); i++){
     if (((int(wierA[i]) > 57) || (int(wierA[i]) < 48))){
@@ -243,6 +259,7 @@ for (int i = 0; i < wierA.length(); i++){
 }
 wierszA=stoi(wierA);
 oma3:
+  cout << "Podaj ilosc kolumn dla macierzy A: ";
 cin >> kolA;
 for (int i = 0; i < kolA.length(); i++){
     if (((int(kolA[i]) > 57) || (int(kolA[i]) < 48))){
@@ -252,20 +269,72 @@ for (int i = 0; i < kolA.length(); i++){
 }
 kolumnaA=stoi(kolA);
             if  (wierszA != kolumnaA || wierszA>5) {
-                cout << "Macirz A musi byc symetryczny i mniej niz 5x5.\n";
+                cout << "Macirz A musi byc symetryczny i mniej niz 3x3.\n";
+                cout<<endl;
+                cout<<endl;
+                cout<<endl;
                 goto tr;
             }
             else {
                 dodajmacierz(a, wierszA, kolumnaA);
-                //wypiszmacirz(a, wierszA, kolumnaA);
+
                 wypisz_macierz_z_listy(macierz_to_list(a, wierszA, kolumnaA),wierszA,kolumnaA);
                 transponowanie(a,c,wierszA,kolumnaA);
-                //wypiszmacirz(c, wierszA, kolumnaA);
+                cout<<"Macierz transponowana:  "<<endl;
                 wypisz_macierz_z_listy(macierz_to_list(c, wierszA, kolumnaA),wierszA,kolumnaA);
             }
         }
-       // goto tra;
+
     }
 
+
+        if(f == "3"){
+            wz:
+
+oma4:
+              cout << "Podaj ilosc wierszej dla macierzy A: ";
+cin >> wierA;
+for (int i = 0; i < wierA.length(); i++){
+    if (((int(wierA[i]) > 57) || (int(wierA[i]) < 48))){
+        cout << "Podane bledne dane!" << endl;
+        goto oma4;
+    }
+}
+wierszA=stoi(wierA);
+oma5:
+  cout << "Podaj ilosc kolumn dla macierzy A: ";
+cin >> kolA;
+for (int i = 0; i < kolA.length(); i++){
+    if (((int(kolA[i]) > 57) || (int(kolA[i]) < 48))){
+        cout << "Podane bledne dane!" << endl;
+        goto oma5;
+    }
+}
+kolumnaA=stoi(kolA);
+            if  (wierszA != kolumnaA || wierszA>3) {
+                cout << "Macirz A musi byc symetryczny i mniej niz 3x3.\n";
+                cout<<endl;
+                cout<<endl;
+                cout<<endl;
+                goto wz;
+        }
+            else {
+                      dodajmacierz(a, wierszA, kolumnaA);
+                      wypisz_macierz_z_listy(macierz_to_list(a, wierszA, kolumnaA),wierszA,kolumnaA);
+                      wyznacznik(a, wierszA, kolumnaA);
+
+                  }
+                }
+cout<<endl;
+cout<<endl;
+cout<<endl;
+
+goto r;
+  }
+        else{
+          if( f == "e") {
+             return 0;
+         }
+  }
 return 0;
 }
