@@ -6,6 +6,54 @@ using namespace std;
 const int m = 10; // max pomiar
 
 
+struct Node {
+  int val;
+  Node* next;
+
+  Node(int _val) : val(_val), next(nullptr){}
+  };
+
+
+struct list_mac {
+    Node* first;
+    Node* last;
+
+    list_mac() : first(nullptr), last(nullptr) {}
+
+    bool is_empty() {
+        return first == nullptr;
+    }
+
+    void push_back(int _val) {
+        Node* p = new Node(_val);
+        if (is_empty()) {
+            first = p;
+            last = p;
+            return;
+        }
+        last->next = p;
+        last = p;
+    }
+
+    void print() {
+        if (is_empty()) return;
+        Node* p = first;
+        while (p) {
+            cout << p->val << " ";
+            p = p->next;
+        }
+        cout << endl;
+    }
+
+    void remove_first() {
+        if (is_empty()) return;
+        Node* p = first;
+        first = p->next;
+        delete p;
+    }
+
+};
+
 void dodajmacierz(int mat[][m], int wiersz, int kolumna) {
     cout << "Podaj elemienty macierzy " << wiersz << "x" << kolumna << ":\n";
     for (int i = 0; i < wiersz; i++) {
@@ -111,7 +159,7 @@ string podaj_numer(){
 }
 
 void wyznacznik(int mat[][m], int wiersz, int kolumna) {
-    int det;
+    int det = 0;
     int size=wiersz;
 
     if(wiersz!=kolumna){
@@ -220,17 +268,54 @@ int main() {
         }
         else
             if (w=='*') {
-                cout << "Podaj ilosc wierszej i kolumn dla macierzy A: ";
-                cin >> wierszA >> kolumnaA;
-                dodajmacierz(a, wierszA, kolumnaA);
-                //wypiszmacirz(a, wierszA, kolumnaA);
-                wypisz_macierz_z_listy(macierz_to_list(a, wierszA, kolumnaA),wierszA,kolumnaA);
+oma7:
+cout << "Podaj ilosc wierszej dla macierzy A: ";
 
-                cout << "Podaj ilosc wierszej i kolumn dla macierzy B: ";
-                cin >> wierszB >> kolumnaB;
-                dodajmacierz(b, wierszB, kolumnaB);
-                //wypiszmacirz(b, wierszB, kolumnaB);
-                wypisz_macierz_z_listy(macierz_to_list(b, wierszB, kolumnaB),wierszB,kolumnaB);
+cin >> wierA;
+for (int i = 0; i < wierA.length(); i++){
+ if (((int(wierA[i]) > 57) || (int(wierA[i]) < 48))){
+     cout << "Podane bledne dane!" << endl;
+     goto oma7;
+ }
+}
+wierszA=stoi(wierA);
+oma6:
+cout << "Podaj ilosc kolumn dla macierzy A: ";
+cin >> kolA;
+for (int i = 0; i < kolA.length(); i++){
+ if (((int(kolA[i]) > 57) || (int(kolA[i]) < 48))){
+     cout << "Podane bledne dane!" << endl;
+     goto oma6;
+ }
+}
+kolumnaA=stoi(kolA);
+dodajmacierz(a, wierszA, kolumnaA);
+//wypiszmacirz(a, wierszA, kolumnaA);
+wypisz_macierz_z_listy(macierz_to_list(a, wierszA, kolumnaA),wierszA,kolumnaA);
+
+omb3:
+cout << "Podaj ilosc wierszej dla macierzy B: ";
+cin >> wierB;
+for (int i = 0; i < wierB.length(); i++){
+ if (((int(wierB[i]) > 57) || (int(wierB[i]) < 48))){
+     cout << "Podane bledne dane!" << endl;
+     goto omb3;
+ }
+}
+wierszB=stoi(wierB);
+omb2:
+cout << "Podaj ilosc kolumn dla macierzy B: ";
+cin >> kolB;
+for (int i = 0; i < kolB.length(); i++){
+ if (((int(kolB[i]) > 57) || (int(kolB[i]) < 48))){
+     cout << "Podane bledne dane!" << endl;
+     goto omb2;
+ }
+}
+kolumnaB=stoi(kolB);
+dodajmacierz(b, wierszB, kolumnaB);
+//wypiszmacirz(b, wierszB, kolumnaB);
+wypisz_macierz_z_listy(macierz_to_list(b, wierszB, kolumnaB),wierszB,kolumnaB);
 
                 if(wierszB==kolumnaA) {
                     mnorzenie(a, b, c, wierszA, kolumnaA, kolumnaB);
@@ -238,7 +323,7 @@ int main() {
                     wypisz_macierz_z_listy(macierz_to_list(c, wierszA, kolumnaB),wierszA,kolumnaB);
 
                 }
-                else  cout <<"Brak danych"<<endl;
+                else  cout <<"Brak mozliwosci mnorzenia"<<endl;
             }
             else cout <<"Brak danych"<<endl;
         goto fun1;
