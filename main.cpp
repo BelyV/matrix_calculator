@@ -1,5 +1,4 @@
 ﻿#include <iostream>
-#include <list>
 
 using namespace std;
 
@@ -14,11 +13,11 @@ struct Node {
   };
 
 
-struct list_mac {
+struct list {
     Node* first;
     Node* last;
 
-    list_mac() : first(nullptr), last(nullptr) {}
+    list() : first(nullptr), last(nullptr) {}
 
     bool is_empty() {
         return first == nullptr;
@@ -35,15 +34,6 @@ struct list_mac {
         last = p;
     }
 
-    void print() {
-        if (is_empty()) return;
-        Node* p = first;
-        while (p) {
-            cout << p->val << " ";
-            p = p->next;
-        }
-        cout << endl;
-    }
 
     void remove_first() {
         if (is_empty()) return;
@@ -84,19 +74,19 @@ void wypiszmacirz(int mat[][m], int wiersz, int kolumna) {
     //wypisz_macierz_z_listy(macierz_to_list(mat[][m], wiersz, kolumna),wiersz,kolumna);
 }
 
-void wypisz_macierz_z_listy(list <int> list_mat, int wiersz, int kolumna){
+void wypisz_macierz_z_listy(list list_mat, int wiersz, int kolumna){
     cout << "Macierz "<< wiersz << "x" << kolumna << ":\n";
     for (int i = 0; i < wiersz; i++) {
         for (int j = 0; j < kolumna; j++) {
-            cout <<"["<< list_mat.front() <<"]"<< "\t";
-            list_mat.pop_front();
+            cout <<"["<< list_mat.first->val <<"]"<< "\t";
+            list_mat.remove_first();
         }
         cout << endl;
     }
 }
 
-list <int> macierz_to_list(int mat[][m], int wiersz, int kolumna){
-    list <int> list_mat;
+list macierz_to_list(int mat[][m], int wiersz, int kolumna){
+    list list_mat;
     for (int i = 0; i < wiersz; i++) {
         for (int j = 0; j < kolumna; j++) {
             list_mat.push_back(mat[i][j]);
