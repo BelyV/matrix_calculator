@@ -1,9 +1,9 @@
 ﻿#include <iostream>
+#include <windows.h>
 
 using namespace std;
 
-const int m = 3
-        ; // max pomiar
+const int m = 3; // max pomiar
 
 
 struct Node {
@@ -44,7 +44,6 @@ struct list {
     }
 
 };
-
 void dodajmacierz(int mat[][m], int wiersz, int kolumna) {
     cout << "Podaj elemienty macierzy " << wiersz << "x" << kolumna << ":\n";
     for (int i = 0; i < wiersz; i++) {
@@ -53,14 +52,20 @@ void dodajmacierz(int mat[][m], int wiersz, int kolumna) {
             omt:
             string s1;
             cin >> s1;
-            //if (s1='-')
+            if (s1=="-"){
+              cout<<"Podane bledne dane!" << endl;
+              goto omt;
+            }
+           else {
             for (int i = 0; i < s1.length(); i++){
                 if (((int(s1[i]) > 57) || (int(s1[i]) < 48)) && (int(s1[i]) != 45)){
                     cout << "Podane bledne dane!" << endl;
                     goto omt;
                 }
-            }
+            } }
+
             mat[i][j] = stoi(s1);
+
         }
     }
 }
@@ -135,16 +140,30 @@ void transponowanie(int a[][m], int c[][m], int wiersz, int kolumna) {
 string podaj_numer(){
     string f1;
     powtorz:
+    cout<<"KALKULATOR DZIALA NA MACIERZACH DO 3x3"<<endl;
+    cout<<endl;
+    cout<<"________________________________________________________________________________________________________________________"<<endl;
+    cout<<endl;
+    cout<<endl;
     cout<<"Dla +,-,* nacisnij - 1"<<endl;
     cout<<"Dla transponowania nacisnij - 2"<<endl;
     cout<<"Dla obliczenia wyznacznika nacisnij - 3"<<endl;
     cout<<"e - wyjsc z programu"<<endl;
+    cout<<endl;
+    cout<<endl;
 
     cin>>f1;
 
 
     if ((f1 != "1") and (f1 != "2") and (f1!="3") and (f1 !="e")) {
+          system("cls");
+          cout<<endl;
+          cout<<endl;    cout<<endl;
+          cout<<endl;
         cout << "Podales niepoprawne dane!!!" << endl;
+        cout<<endl;
+        cout<<endl;    cout<<endl;
+        cout<<endl;
         goto powtorz;
     }
     return f1;
@@ -177,13 +196,21 @@ int main() {
     string f;
 
     r:
+   // cout<<"KALKULATOR DZIALA NA MACIERZACH DO 3x3"<<endl;
+    //cout<<endl;
+    //cout<<"________________________________________________________________________________________________________________________"<<endl;
+    cout<<endl;
+    cout<<endl;
     f = podaj_numer();
+    cout<<endl;
+    cout<<endl;
   if ((f == "1") || (f == "2") || (f =="3")) {
     if(f=="1") {
         fun1:
         cout<<"Podaj + - dodawanie,- - odejmowanie,* - mnorzenie, m-menu "<<endl;
         cin >>w;
         if (w=='m') {
+            system("cls");
             cout<<endl;
             cout<<endl;
             cout<<endl;
@@ -192,7 +219,7 @@ int main() {
 
         if(w=='+' || w=='-') {
                oma:
-            cout << "Podaj ilosc wierszej dla macierzy A: ";
+            cout << "Podaj ilosc wierszy dla macierzy A: ";
 
             cin >> wierA;
             for (int i = 0; i < wierA.length(); i++){
@@ -217,7 +244,7 @@ int main() {
             wypisz_macierz_z_listy(macierz_to_list(a, wierszA, kolumnaA),wierszA,kolumnaA);
 
             omb:
-              cout << "Podaj ilosc wierszej dla macierzy B: ";
+              cout << "Podaj ilosc wierszy dla macierzy B: ";
             cin >> wierB;
             for (int i = 0; i < wierB.length(); i++){
                 if (((int(wierB[i]) > 57) || (int(wierB[i]) < 48))){
@@ -247,12 +274,16 @@ int main() {
                 if(w=='+') {
                     dodawanie(a, b, c, wierszA, kolumnaA);
                     //wypiszmacirz(c, wierszA, kolumnaA);
+                    cout<<endl;
+                    cout<<"Macierz C = "<<endl;
                     wypisz_macierz_z_listy(macierz_to_list(c, wierszA, kolumnaA),wierszA,kolumnaA);
                 }
                 else
                     if(w=='-') {
                         odejmowanie(a, b, c, wierszA, kolumnaA);
                         //wypiszmacirz(c, wierszA, kolumnaA);
+                        cout<<endl;
+                        cout<<"Macierz C = "<<endl;
                         wypisz_macierz_z_listy(macierz_to_list(c, wierszA, kolumnaA),wierszA,kolumnaA);
                     }
                     else cout <<"Blad danych"<<endl;
@@ -261,7 +292,7 @@ int main() {
         else
             if (w=='*') {
 oma7:
-cout << "Podaj ilosc wierszej dla macierzy A: ";
+cout << "Podaj ilosc wierszy dla macierzy A: ";
 
 cin >> wierA;
 for (int i = 0; i < wierA.length(); i++){
@@ -286,7 +317,7 @@ dodajmacierz(a, wierszA, kolumnaA);
 wypisz_macierz_z_listy(macierz_to_list(a, wierszA, kolumnaA),wierszA,kolumnaA);
 
 omb3:
-cout << "Podaj ilosc wierszej dla macierzy B: ";
+cout << "Podaj ilosc wierszy dla macierzy B: ";
 cin >> wierB;
 for (int i = 0; i < wierB.length(); i++){
  if (((int(wierB[i]) > 57) || (int(wierB[i]) < 48))){
@@ -312,6 +343,8 @@ wypisz_macierz_z_listy(macierz_to_list(b, wierszB, kolumnaB),wierszB,kolumnaB);
                 if(wierszB==kolumnaA) {
                     mnorzenie(a, b, c, wierszA, kolumnaA, kolumnaB);
                     //wypiszmacirz(c, wierszA, kolumnaB);
+                    cout<<endl;
+                    cout<<"Macierz C = "<<endl;
                     wypisz_macierz_z_listy(macierz_to_list(c, wierszA, kolumnaB),wierszA,kolumnaB);
 
                 }
@@ -326,7 +359,7 @@ wypisz_macierz_z_listy(macierz_to_list(b, wierszB, kolumnaB),wierszB,kolumnaB);
             tr:
 
 oma2:
-                  cout << "Podaj ilosc wierszej dla macierzy A: ";
+                  cout << "Podaj ilosc wierszy dla macierzy A: ";
 cin >> wierA;
 for (int i = 0; i < wierA.length(); i++){
     if (((int(wierA[i]) > 57) || (int(wierA[i]) < 48))){
@@ -369,7 +402,7 @@ kolumnaA=stoi(kolA);
             wz:
 
 oma4:
-              cout << "Podaj ilosc wierszej dla macierzy A: ";
+              cout << "Podaj ilosc wierszy dla macierzy A: ";
 cin >> wierA;
 for (int i = 0; i < wierA.length(); i++){
     if (((int(wierA[i]) > 57) || (int(wierA[i]) < 48))){
