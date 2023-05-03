@@ -2,7 +2,8 @@
 
 using namespace std;
 
-const int m = 10; // max pomiar
+const int m = 3
+        ; // max pomiar
 
 
 struct Node {
@@ -52,6 +53,7 @@ void dodajmacierz(int mat[][m], int wiersz, int kolumna) {
             omt:
             string s1;
             cin >> s1;
+            //if (s1='-')
             for (int i = 0; i < s1.length(); i++){
                 if (((int(s1[i]) > 57) || (int(s1[i]) < 48)) && (int(s1[i]) != 45)){
                     cout << "Podane bledne dane!" << endl;
@@ -64,7 +66,7 @@ void dodajmacierz(int mat[][m], int wiersz, int kolumna) {
 }
 
 void wypiszmacirz(int mat[][m], int wiersz, int kolumna) {
-    cout << "Macierz "<< wiersz << "x" << kolumna << ":\n";
+   // cout << "Macierz "<< wiersz << "x" << kolumna << ":\n";
     for (int i = 0; i < wiersz; i++) {
         for (int j = 0; j < kolumna; j++) {
             cout <<"["<< mat[i][j] <<"]"<< "\t";
@@ -75,7 +77,7 @@ void wypiszmacirz(int mat[][m], int wiersz, int kolumna) {
 }
 
 void wypisz_macierz_z_listy(list list_mat, int wiersz, int kolumna){
-    cout << "Macierz "<< wiersz << "x" << kolumna << ":\n";
+    //cout << "Macierz "<< wiersz << "x" << kolumna << ":\n";
     for (int i = 0; i < wiersz; i++) {
         for (int j = 0; j < kolumna; j++) {
             cout <<"["<< list_mat.first->val <<"]"<< "\t";
