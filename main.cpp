@@ -95,7 +95,7 @@ return kol;
 
 
 void dodajmacierz(int mat[][m], int wiersz, int kolumna) {
-    cout << "Podaj elemienty macierzy " << wiersz << "x" << kolumna << ":\n";
+    cout << "Podaj elemienty macierzy " << wiersz << "x" << kolumna <<" przez enter"<< ":\n";
     for (int i = 0; i < wiersz; i++) {
         for (int j = 0; j < kolumna; j++) {
             //cin >> mat[i][j];
@@ -248,13 +248,14 @@ int main() {
     int kolumnaA=0;
     int wierszB=0;
     int kolumnaB=0;
-    char w;
+    string w;
     char q;
     char p;
     q='A';
     p='B';
     string f;
     string k;
+
 
     r:
     cout<<endl;
@@ -267,7 +268,7 @@ int main() {
         fun1:
         cout<<"Podaj + - dodawanie,- - odejmowanie,* - mnorzenie, m-menu "<<endl;
         cin >>w;
-        if (w=='m') {
+        if (w=="m" || w=="M") {
             system("cls");
             cout<<endl;
             cout<<endl;
@@ -275,7 +276,7 @@ int main() {
             goto r;
         }
 
-        if(w=='+' || w=='-') {
+        if(w=="+" || w=="-") {
            // pomiarmac(q, wierA, kolA) ;
             wierszA=pomiarmacwe(q, wierA) ;
             kolumnaA=pomiarmacko(q, kolA) ;
@@ -299,7 +300,7 @@ int main() {
             }
             else {
 
-                if(w=='+') {
+                if(w=="+") {
                     dodawanie(a, b, c, wierszA, kolumnaA);
                     //wypiszmacirz(c, wierszA, kolumnaA);
                     cout<<endl;
@@ -307,7 +308,7 @@ int main() {
                     wypisz_macierz_z_listy(macierz_to_list(c, wierszA, kolumnaA),wierszA,kolumnaA);
                 }
                 else
-                    if(w=='-') {
+                    if(w=="-") {
                         odejmowanie(a, b, c, wierszA, kolumnaA);
                         //wypiszmacirz(c, wierszA, kolumnaA);
                         cout<<endl;
@@ -318,7 +319,7 @@ int main() {
              }
         }
         else
-            if (w=='*') {
+            if (w=="*") {
                 wierszA=pomiarmacwe(q, wierA) ;
                 kolumnaA=pomiarmacko(q, kolA) ;
                 dodajmacierz(a, wierszA, kolumnaA);
@@ -353,6 +354,10 @@ int main() {
 
         if(f == "2"){ {
             tr:
+                 system("cls");
+                 cout<<"Transponowanie"<<endl;
+                 cout<<endl;
+                 cout<<endl;
                 wierszA=pomiarmacwe(q, wierA) ;
                 kolumnaA=pomiarmacko(q, kolA) ;
 
@@ -373,13 +378,32 @@ int main() {
                 wypisz_macierz_z_listy(macierz_to_list(c, wierszA, kolumnaA),wierszA,kolumnaA);
             }
         }
+            q:
+            cout<<endl;
+            cout<<endl;
+            cout<<endl;
 
+            cout<<"P-Jeszcze raz, M-menu"<<endl;
+            cin>>k;
+            if(k=="P" || k=="p"){
+                   system("cls");
+                   goto tr;
+
+            }
+           else if(k=="M" || k=="m"){
+                  system("cls");
+                goto r;
+            }
+            else  goto q;
     }
 
 
         if(f == "3"){
             wz:
-
+            system("cls");
+            cout<<"Obliczenie wyznacznika"<<endl;
+            cout<<endl;
+            cout<<endl;
             wierszA=pomiarmacwe(q, wierA) ;
             kolumnaA=pomiarmacko(q, kolA) ;
             if  (wierszA != kolumnaA || wierszA>3) {
@@ -396,16 +420,31 @@ int main() {
 
 
                   }
+                       j:
+                       cout<<endl;
+                       cout<<endl;
+                       cout<<endl;
+
+                       cout<<"P-Jeszcze raz, M-menu"<<endl;
+                       cin>>k;
+                       if(k=="P" || k=="p"){
+                        system("cls");
+                          goto wz;
+
+                            }
+                       else if(k=="M" || k=="m"){
+                       system("cls");
+                          goto r;
+                         }
+                       else  goto j;
                 }
 cout<<endl;
 cout<<endl;
 cout<<endl;
 
-
-goto r;
   }
         else{
-          if( f == "e") {
+          if( f == "e" || f=="E") {
               system("cls");
               z:
               system("cls");
