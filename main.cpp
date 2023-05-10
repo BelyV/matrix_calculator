@@ -192,7 +192,7 @@ string podaj_numer(){
     powtorz:
     cout<<"KALKULATOR DZIALA NA MACIERZACH DO 3x3"<<endl;
     cout<<endl;
-    cout<<"________________________________________________________________________________________________________________________"<<endl;
+    cout<<"_____________________________________________________________________________________"<<endl;
     cout<<endl;
     cout<<endl;
     cout<<"Dla +,-,* nacisnij - 1"<<endl;
@@ -207,8 +207,7 @@ string podaj_numer(){
 
     if ((f1 != "1") and (f1 != "2") and (f1!="3") and (f1 !="e")) {
           system("cls");
-          cout<<endl;
-          cout<<endl;    cout<<endl;
+
           cout<<endl;
         cout << "Podales niepoprawne dane!!!" << endl;
         cout<<endl;
@@ -266,6 +265,8 @@ int main() {
   if ((f == "1") || (f == "2") || (f =="3")) {
     if(f=="1") {
         fun1:
+            system("cls");
+
         cout<<"Podaj + - dodawanie,- - odejmowanie,* - mnorzenie, m-menu "<<endl;
         cin >>w;
         if (w=="m" || w=="M") {
@@ -278,6 +279,7 @@ int main() {
 
         if(w=="+" || w=="-") {
            // pomiarmac(q, wierA, kolA) ;
+              system("cls");
             wierszA=pomiarmacwe(q, wierA) ;
             kolumnaA=pomiarmacko(q, kolA) ;
             dodajmacierz(a, wierszA, kolumnaA);
@@ -301,6 +303,7 @@ int main() {
             else {
 
                 if(w=="+") {
+
                     dodawanie(a, b, c, wierszA, kolumnaA);
                     //wypiszmacirz(c, wierszA, kolumnaA);
                     cout<<endl;
@@ -309,6 +312,7 @@ int main() {
                 }
                 else
                     if(w=="-") {
+
                         odejmowanie(a, b, c, wierszA, kolumnaA);
                         //wypiszmacirz(c, wierszA, kolumnaA);
                         cout<<endl;
@@ -320,6 +324,7 @@ int main() {
         }
         else
             if (w=="*") {
+                  system("cls");
                 wierszA=pomiarmacwe(q, wierA) ;
                 kolumnaA=pomiarmacko(q, kolA) ;
                 dodajmacierz(a, wierszA, kolumnaA);
@@ -454,14 +459,7 @@ cout<<endl;
               cout<<endl;
               if(k=="t" || k=="T"){
                    system("cls");
-                  cout<<endl;
-                  cout<<endl;
-                  cout<<endl;
 
-                  cout<<endl;
-                  cout<<endl;
-                  cout<<"                                            DO WIDZENIA"<<endl;
-                  cout<<endl;
 
                   return 0;
               }
